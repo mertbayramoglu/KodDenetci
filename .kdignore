@@ -1,0 +1,3 @@
+# Kod Denetçi'nin taramayacağı yollar (gitignore benzeri).
+# Bilerek hatalı örnek dosyalar: testler bunları tespit etmeli, düzeltilmemeli.
+tests/fixtures/

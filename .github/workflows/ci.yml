@@ -1,0 +1,23 @@
+name: CI
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        python: ["3.9", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Derleme kontrolü
+        run: python -m py_compile KodDenetci.py kd_core.py
+      - name: Birim testleri
+        run: python -m unittest discover -s tests -v
+      - name: CLI duman testi
+        run: python KodDenetci.py --cli tests/fixtures

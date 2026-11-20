@@ -1,0 +1,5 @@
+-- comment
+SELECT * FROM [Users] WITH (NOLOCK);
+DELETE FROM Users;
+UPDATE T SET a=1 WHERE id=2;
+UPDATE T SET b=2;

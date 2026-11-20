@@ -1,0 +1,19 @@
+# Uygulama verisi: taranan projelerden alıntılar içerir, ASLA depoya eklenmez
+veri/
+*.db
+*.db-journal
+# Python
+__pycache__/
+*.pyc
+# Derleme çıktıları / imzasız ikili dosyalar
+dist/
+build/
+*.exe
+*.spec
+# Editör / sistem
+.vscode/
+.idea/
+Thumbs.db
+.venv/
+venv/
+*.log
