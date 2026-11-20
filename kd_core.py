@@ -1183,6 +1183,11 @@ _CLI = {"tr": {"ign": ".kdignore ile atlanan klasör/dosya: {n}",
 def cli_main(argv):
     """python KodDenetci.py --cli <klasör> [--prompts <çıktı klasörü>] [--lang tr|en]"""
     import tempfile
+    for stream in (sys.stdout, sys.stderr):      # cp1252/cp437 konsolda Türkçe karakter çökmesin
+        try:
+            stream.reconfigure(errors="replace")
+        except (AttributeError, ValueError):  # kd-ignore (yönlendirilmiş/StringIO akışı)
+            pass
     root = argv[argv.index("--cli") + 1]
     out = argv[argv.index("--prompts") + 1] if "--prompts" in argv else None
     ui = i18n.resolve(argv[argv.index("--lang") + 1] if "--lang" in argv else "auto")
