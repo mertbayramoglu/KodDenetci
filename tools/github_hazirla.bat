@@ -34,11 +34,13 @@ echo.
 set "OK="
 set /p OK=Bu dosyalar commit edilsin mi? (E/H): 
 if /i not "%OK%"=="E" goto done
-git commit -m "Kod Denetci 1.1.0"
+for /f "delims=" %%V in ('python -c "import kd_core;print(kd_core.APP_VER)" 2^>nul') do set KDVER=%%V
+if "%KDVER%"=="" set KDVER=update
+git commit -m "Kod Denetci %KDVER%"
 
 echo.
 set "URL="
-set /p URL=GitHub depo adresi (bos birakirsan push atlanir):https://github.com/mertbayramoglu/KodDenetci.git
+set /p URL=GitHub depo adresi (bos birakirsan push atlanir): 
 if "%URL%"=="" goto done
 git remote remove origin >nul 2>nul
 git remote add origin "%URL%"
